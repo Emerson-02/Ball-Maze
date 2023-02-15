@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody myRB;
+    [HideInInspector] public Rigidbody2D myRB;
 
     [SerializeField]
     [Range(1f, 10f)]
@@ -16,15 +16,19 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myRB = this.gameObject.GetComponent<Rigidbody>();
+        myRB = this.gameObject.GetComponent<Rigidbody2D>();
         isMovement = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        dirX = Input.acceleration.x * (movementSpeed * Time.deltaTime);
-        dirY = Input.acceleration.y * (movementSpeed * Time.deltaTime);
+        if(isMovement)
+        {
+            dirX = Input.acceleration.x * (movementSpeed * Time.deltaTime);
+            dirY = Input.acceleration.y * (movementSpeed * Time.deltaTime);
+        }
+        
     }
 
     private void FixedUpdate() 
@@ -32,6 +36,10 @@ public class PlayerMovement : MonoBehaviour
         if(isMovement)
         {
             myRB.velocity = new Vector2(myRB.velocity.x + dirX, myRB.velocity.y + dirY);
+        }
+        else
+        {
+            myRB.velocity = Vector2.zero;
         }
     }
 }
