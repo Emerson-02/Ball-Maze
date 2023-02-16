@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,7 @@ public class PlayerController : MonoBehaviour
         if(target.gameObject.CompareTag("Lose"))
         {
             GameController tempGameController = FindObjectOfType<GameController>();
-            tempGameController.gameover = true;tempGameController.GameOver(this.gameObject);
+            tempGameController.GameOver(this.gameObject);
             this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
         }
         else if(target.gameObject.CompareTag("Win"))
@@ -30,6 +31,8 @@ public class PlayerController : MonoBehaviour
             GameController tempGameController = FindObjectOfType<GameController>();
             tempGameController.finalTime = tempGameController.currentTime;
             Debug.Log(tempGameController.finalTime);
+            UIController tempUIController = FindObjectOfType<UIController>();
+            tempUIController.WinGame();
         }
         
     }
