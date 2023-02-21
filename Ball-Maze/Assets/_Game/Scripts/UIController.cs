@@ -16,6 +16,7 @@ public class UIController : MonoBehaviour
     {
         gameController = FindObjectOfType<GameController>();
         panelFinishGame.gameObject.SetActive(false);
+        panelPause.gameObject.SetActive(false);
         panelGame.gameObject.SetActive(true);
         winGame = false;
     }
@@ -54,5 +55,24 @@ public class UIController : MonoBehaviour
         panelFinishGame.gameObject.SetActive(false);
         gameController.currentTime = 0f;
         winGame = false;
+    }
+
+    public void ButtonPauseGame()
+    {
+        panelPause.gameObject.SetActive(true);
+        panelGame.gameObject.SetActive(false);
+        Time.timeScale = 0f;
+    }
+
+    public void ButtonResumeGame()
+    {
+        panelGame.gameObject.SetActive(true);
+        panelPause.gameObject.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    public void ButtonBackMainMenu()
+    {
+        Time.timeScale = 1f;
     }
 }
