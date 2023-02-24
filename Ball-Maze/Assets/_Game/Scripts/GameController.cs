@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public float currentTime, finalTime;
-    public Transform playerStartPosition;
+    private Transform playerStartPosition;
 
     
     public void GameOver(GameObject player)

@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public UnityEngine.UI.Button[] btnLevels;
-    public GameObject[] imgLevels;
-    public Sprite imgLock, imgUnlock;
+    [SerializeField] private UnityEngine.UI.Button[] btnLevels;
+    [SerializeField] private GameObject[] imgLevels;
+    [SerializeField] private Sprite imgLock, imgUnlock;
 
     // Start is called before the first frame update
     void Awake()

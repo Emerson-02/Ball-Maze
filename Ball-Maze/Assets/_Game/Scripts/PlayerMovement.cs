@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [HideInInspector] public Rigidbody2D myRB;
+    private Rigidbody2D myRB;
 
     [SerializeField]
     [Range(1f, 10f)]

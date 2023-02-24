@@ -9,9 +9,9 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] private TMP_Text txtCurrentTime, txtFinalTime;
     private GameController gameController;
-    public GameObject panelGame, panelFinishGame, panelPause;
-    public bool  winGame;
-    public int nextSceneLoad;
+    [SerializeField] private GameObject panelGame, panelFinishGame, panelPause;
+    private bool winGame;
+    private int nextSceneLoad;
 
     // Start is called before the first frame update
     void Start()
@@ -87,6 +87,15 @@ public class UIController : MonoBehaviour
 
     public void ButtonNextLevel()
     {
-        SceneManager.LoadScene(nextSceneLoad);
+        if(SceneManager.GetActiveScene().buildIndex == 24)
+        {
+            SceneManager.LoadScene(0);
+        }
+        else
+        {
+            SceneManager.LoadScene(nextSceneLoad);
+        }
+
+        
     }
 }

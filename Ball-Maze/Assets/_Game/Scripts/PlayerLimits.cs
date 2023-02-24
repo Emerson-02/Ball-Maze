@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerLimits : MonoBehaviour
 {
-    float minX, maxX, minY, maxY;
+    private float minX, maxX, minY, maxY;
     [SerializeField] private float distanceX, distanceY;
 
     void Start()
