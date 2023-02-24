@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class UIController : MonoBehaviour
     private GameController gameController;
     public GameObject panelGame, panelFinishGame, panelPause;
     public bool  winGame;
+    public int nextSceneLoad;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,7 @@ public class UIController : MonoBehaviour
         panelPause.gameObject.SetActive(false);
         panelGame.gameObject.SetActive(true);
         winGame = false;
+        nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
     }
 
     // Update is called once per frame
@@ -37,6 +40,11 @@ public class UIController : MonoBehaviour
         txtFinalTime.text = gameController.finalTime.ToString("00:00");
         panelFinishGame.gameObject.SetActive(true);
         panelGame.gameObject.SetActive(false);
+
+        if(nextSceneLoad > PlayerPrefs.GetInt("levelAt"))
+        {
+            PlayerPrefs.SetInt("levelAt", nextSceneLoad);
+        }
     }
 
     void UpdateText()
@@ -74,5 +82,11 @@ public class UIController : MonoBehaviour
     public void ButtonBackMainMenu()
     {
         Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
+    }
+
+    public void ButtonNextLevel()
+    {
+        SceneManager.LoadScene(nextSceneLoad);
     }
 }
